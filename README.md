@@ -30,3 +30,46 @@ recommended.
 cd ops_reach
 python setup.py develop
 ```
+
+## Initial setup
+If you are new to pysat, you will need to initialize the dataset folder.
+```
+pysat.params['data_dirs'] = 'path/to/directory/that/exists'
+```
+
+Since download support for REACH is not yet supported, we need to mimic the
+pysat structure so the code can find the data.  Inside this directory, create
+the path `aero/reach/l1b`.  Add any existing data files into this directory.  
+When a the reach instrument object is initialized, it will automatically see any
+available files.
+
+## Data Access
+
+Once the install and setup steps are complete, try:
+```
+import ops_reach
+import pysat
+
+reach = pysat.Instrument(inst_module=ops_reach.instruments.aero_reach,
+                         tag='l1b', inst_id='101')
+```
+
+This will access the data files for vehicle ID 101.  Note that vehicle id is used
+for the standard pysat inst_id label.  Tag will select the level 1b datasets.
+
+You can verify that pysat can see the dataset by invoking
+```
+reach.files.files
+```
+which will print a list of the files that pysat can see.
+
+Loading data for a given day is as simple as
+```
+import datetime as dt
+reach.load(date=dt.datetime(2017, 6, 15))
+```
+
+The data will be loaded into a dataframe at `reach.data`, the metadata will be
+stored under `reach.meta`.
+
+Enjoy!
