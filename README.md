@@ -12,8 +12,11 @@ Python 3.8+.
 
 | Common modules | Community modules |
 | -------------- | ----------------- |
-| numpy          | pysat>=3.0        |
+| numpy          | pysat>=3.0.2      |
 | pandas         |                   |
+
+Note: requires the next `pysat` that is not yet released.  This is currently the
+develop branch there.
 
 For the initial version, the repository must be installed from github:
 
