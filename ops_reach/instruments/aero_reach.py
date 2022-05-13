@@ -10,7 +10,7 @@ name
 inst_id
     '101', '105'
 tag
-    'l1b'
+    'l1b', 'l1c'
 
 """
 
@@ -30,8 +30,9 @@ from ops_reach.instruments.methods import reach as mm_reach
 
 platform = 'aero'
 name = 'reach'
-tags = {'l1b': 'Level 1B dataset'}
-inst_ids = {'101': ['l1b'], '105': ['l1b']}
+tags = {'l1b': 'Level 1B dataset', 'l1c': 'Level 1C dataset'}
+inst_ids = {'101': [tag for tag in tags.keys()],
+            '105': [tag for tag in tags.keys()]}
 
 # Custom Instrument properties
 directory_format = os.path.join('{platform}', '{name}', '{tag}')
@@ -98,26 +99,30 @@ def load(fnames, tag=None, inst_id=None, keep_original_names=False):
 
     """
 
-    # Generate data object from csv files
-    # Only grab first file for test
-    data = pds.read_csv(fnames[0])
+    if tag == 'l1b':
+        # Generate data object from csv files
+        # Only grab first file for test
+        data = pds.read_csv(fnames[0])
 
-    # Rename date variables
-    data = data.rename(columns={'YYYY': 'year', 'mm': 'month', 'DD': 'day',
-                                'HH': 'hour', 'MM': 'minute', 'SEC': 'seconds'})
+        # Rename date variables
+        data = data.rename(columns={'YYYY': 'year', 'mm': 'month', 'DD': 'day',
+                                    'HH': 'hour', 'MM': 'minute', 'SEC': 'seconds'})
 
-    # Now we make our Epoch variable
-    Epoch = np.array([dt.datetime(data['year'][i], data['month'][i],
-                                  data['day'][i], data['hour'][i],
-                                  data['minute'][i], data['seconds'][i])
-                     for i in range(len(data))])
-    data.index = Epoch
+        # Now we make our Epoch variable
+        Epoch = np.array([dt.datetime(data['year'][i], data['month'][i],
+                                      data['day'][i], data['hour'][i],
+                                      data['minute'][i], data['seconds'][i])
+                         for i in range(len(data))])
+        data.index = Epoch
 
-    # Add meta here
-    header_data = mm_reach.generate_header(inst_id, data.index[0])
-    meta = pysat.Meta(header_data=header_data)
+        # Add meta here
+        header_data = mm_reach.generate_header(inst_id, data.index[0])
+        meta = pysat.Meta(header_data=header_data)
 
-    # TODO(#1): add metadata for variables
+        # TODO(#1): add metadata for variables
+    else:
+        # Use standard netcdf interface
+        data, meta = pysat.utils.io.load_netcdf(fnames)
 
     return data, meta
 
@@ -129,11 +134,15 @@ def load(fnames, tag=None, inst_id=None, keep_original_names=False):
 
 # Set the list_files routine
 datestr = '{year:4d}{month:02d}{day:02d}'
-fname = 'reach.{datestr}.vid-{inst_id}.l1b.v{{version:01d}}.csv'
+fname = 'reach.{datestr}.vid-{inst_id}.{tag}.v{{version:01d}}.{suffix}'
+suffix = {'l1b': 'csv', 'l1c': 'nc'}
 supported_tags = {}
 for inst_id in inst_ids:
-    supported_tags[inst_id] = {'l1b': fname.format(datestr=datestr,
-                                                   inst_id=inst_id)}
+    supported_tags[inst_id] = {}
+    for tag in tags:
+        supported_tags[inst_id][tag] = fname.format(datestr=datestr, tag=tag,
+                                                    inst_id=inst_id,
+                                                    suffix=suffix[tag])
 list_files = functools.partial(mm_gen.list_files,
                                supported_tags=supported_tags)
 
