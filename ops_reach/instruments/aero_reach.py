@@ -117,7 +117,7 @@ def load(fnames, tag=None, inst_id=None, keep_original_names=False):
     header_data = mm_reach.generate_header(inst_id, data.index[0])
     meta = pysat.Meta(header_data=header_data)
 
-    # TODO(): add metadata for variables
+    # TODO(#1): add metadata for variables
 
     return data, meta
 
@@ -147,6 +147,6 @@ list_files = functools.partial(mm_gen.list_files,
 # list_remote_files = functools.partial(cdw.list_remote_files,
 #                                       supported_tags=download_tags)
 
-# TODO(): add functional download routine
+# TODO(#3): add functional download routine
 download = functools.partial(mm_test.download)
 clean = functools.partial(mm_test.clean)
