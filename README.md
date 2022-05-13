@@ -27,6 +27,6 @@ active development, using the "develop" option rather than install is highly
 recommended.
 
 ```
-cd pysatMissions/
+cd ops_reach
 python setup.py develop
 ```
