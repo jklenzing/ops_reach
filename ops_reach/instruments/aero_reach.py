@@ -57,7 +57,7 @@ def init(self):
     return
 
 
-def load(fnames, tag=None, inst_id=None, keep_original_names=False):
+def load(fnames, tag=None, inst_id=None):
     """Load REACH data into `pandas.DataFrame` and `pysat.Meta` objects.
 
     This routine is called as needed by pysat. It is not intended
@@ -74,9 +74,6 @@ def load(fnames, tag=None, inst_id=None, keep_original_names=False):
     inst_id : string
         Satellite ID used to identify particular data set to be loaded.
         This input is nominally provided by pysat itself.
-    keep_original_names : boolean
-        if True then the names as given in the netCDF ICON file
-        will be used as is. If False, a preamble is removed.
 
     Returns
     -------
