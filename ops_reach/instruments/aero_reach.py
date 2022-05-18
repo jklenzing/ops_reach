@@ -103,7 +103,8 @@ def load(fnames, tag=None, inst_id=None):
 
         # Rename date variables
         data = data.rename(columns={'YYYY': 'year', 'mm': 'month', 'DD': 'day',
-                                    'HH': 'hour', 'MM': 'minute', 'SEC': 'seconds'})
+                                    'HH': 'hour', 'MM': 'minute',
+                                    'SEC': 'seconds'})
 
         # Now we make our Epoch variable
         Epoch = np.array([dt.datetime(data['year'][i], data['month'][i],
@@ -143,6 +144,11 @@ for inst_id in inst_ids:
 list_files = functools.partial(mm_gen.list_files,
                                supported_tags=supported_tags)
 
+# TODO(#3): replace these lines with functional download routines below
+download = functools.partial(mm_test.download)
+clean = functools.partial(mm_test.clean)
+
+# Examples of functional download info
 # Set the download routine
 # basic_tag = {'remote_dir': '/pub/data/cnofs/cindi/ivm_500ms_cdf/{year:4d}/',
 #              'fname': fname}
@@ -152,7 +158,3 @@ list_files = functools.partial(mm_gen.list_files,
 # Set the list_remote_files routine
 # list_remote_files = functools.partial(cdw.list_remote_files,
 #                                       supported_tags=download_tags)
-
-# TODO(#3): add functional download routine
-download = functools.partial(mm_test.download)
-clean = functools.partial(mm_test.clean)
