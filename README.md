@@ -37,8 +37,11 @@ python setup.py develop
 ## Initial setup
 If you are new to pysat, you will need to initialize the dataset folder.
 ```
-pysat.params['data_dirs'] = 'path/to/directory/that/exists'
+pysat.params['data_dirs'] = 'path/to/directory/that/may/or/may/not/exist'
 ```
+pysat will create directories as needed.  For example, 
+`pysat.params['data_dirs'] = '~/data'` will create a new directory under the 
+user's home directory.
 
 Since download support for REACH is not yet supported, we need to mimic the
 pysat structure so the code can find the data.  Inside this directory, create
