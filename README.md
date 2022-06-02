@@ -15,8 +15,8 @@ Python 3.8+.
 | numpy          | pysat>=3.0.2      |
 | pandas         |                   |
 
-Note: requires the next `pysat` that is not yet released.  This is currently the
-develop branch there.
+Note: requires the next `pysat` that is not yet released.  This is currently 
+set up as a release candidate at https://github.com/pysat/pysat/pull/1014
 
 For the initial version, the repository must be installed from github:
 
