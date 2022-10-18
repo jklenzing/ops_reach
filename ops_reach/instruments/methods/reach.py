@@ -162,10 +162,9 @@ def generate_metadata(header_data):
 
     Parameters
     ----------
-    inst_id : str
-        The VID of the associated dataset.
-    epoch : dt.datetime
-        The epoch of the datafile.  Corresponds to the first data point.
+    header_data : dict
+        A dictionary compatible with the pysat.meta_header format.  Required to
+        properly initialize metadata.
 
     Returns
     -------
