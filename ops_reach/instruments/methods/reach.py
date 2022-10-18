@@ -36,7 +36,7 @@ ackn_str = ' '.join(('The development of the CDF files was supported by the SPI'
 
 
 def scrub_l1b(data):
-    """Make data labels compatible with SPASE and pysat.
+    """Make data labels and epoch compatible with SPASE and pysat.
 
     Parameters
     ----------
@@ -46,7 +46,7 @@ def scrub_l1b(data):
     Returns
     -------
     data : pandas.Datafram()
-        Replacement data object with compatible variable names.
+        Replacement data object with compatible variable names and epoch.
 
     """
 
