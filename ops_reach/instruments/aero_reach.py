@@ -14,9 +14,7 @@ tag
 
 """
 
-import datetime as dt
 import functools
-import numpy as np
 import os
 import pandas as pds
 
@@ -100,22 +98,11 @@ def load(fnames, tag=None, inst_id=None):
         # Generate data object from csv files
         # Only grab first file for test
         data = pds.read_csv(fnames[0])
-
-        # Rename date variables
-        data = data.rename(columns={'YYYY': 'year', 'mm': 'month', 'DD': 'day',
-                                    'HH': 'hour', 'MM': 'minute',
-                                    'SEC': 'seconds'})
-
-        # Now we make our Epoch variable
-        Epoch = np.array([dt.datetime(data['year'][i], data['month'][i],
-                                      data['day'][i], data['hour'][i],
-                                      data['minute'][i], data['seconds'][i])
-                         for i in range(len(data))])
-        data.index = Epoch
+        data = mm_reach.scrub_l1b(data)
 
         # Add meta here
         header_data = mm_reach.generate_header(inst_id, data.index[0])
-        meta = pysat.Meta(header_data=header_data)
+        meta = mm_reach.generate_metadata(header_data)
 
         # TODO(#1): add metadata for variables
     else:
