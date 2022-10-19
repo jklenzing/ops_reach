@@ -134,7 +134,7 @@ def generate_header(inst_id, epoch):
               'File_naming_convention': 'source_date_vehicalID_descriptor',
               'Data_version': '03',
               'Software_version': 'l1b',
-              'PI_name': 'Joe Mazur (joseph.e.mazur@aero.or)',
+              'PI_name': 'Joe Mazur (joseph.e.mazur@aero.org)',
               'PI_affiliation': 'The Aerospace Corporation',
               'Data_Curator': 'Timothy B. Guild (Timothy.B.Guild@aero.org)',
               'DC_afiliation': 'The Aerospace Corporation',
@@ -176,7 +176,7 @@ def generate_metadata(header_data):
     # Create required metadata values
     meta = pysat.Meta(header_data=header_data)
 
-    meta['mjd'] = {meta.labels.units: '???',
+    meta['mjd'] = {meta.labels.units: 'Julian Day',
                    meta.labels.min_val: 0.0,
                    meta.labels.max_val: np.nan}
     meta['year'] = {meta.labels.units: 'years',
@@ -200,7 +200,7 @@ def generate_metadata(header_data):
     meta['doy'] = {meta.labels.units: 'days',
                    meta.labels.min_val: 0,
                    meta.labels.max_val: 366}
-    meta['vid'] = {meta.labels.units: '???',
+    meta['vid'] = {meta.labels.units: 'unitless',
                    meta.labels.min_val: 0.0,
                    meta.labels.max_val: np.nan}
     meta['altitude'] = {meta.labels.units: 'km',
@@ -239,7 +239,8 @@ def generate_metadata(header_data):
     meta['electron_flux1'] = {meta.labels.units: '#/cm^2/sr/s',
                               meta.labels.min_val: 0.0,
                               meta.labels.max_val: np.inf}
-    meta['species1'] = {meta.labels.units: '???',
+    meta['species1'] = {meta.labels.units: 'unitless',
+                        meta.labels.notes: '0 (not currently used), 1 – protons, 2-electrons, and 3-both / ambiguous',
                         meta.labels.min_val: 0.0,
                         meta.labels.max_val: np.nan}
     meta['dose2'] = {meta.labels.units: 'rad/s',
@@ -251,19 +252,20 @@ def generate_metadata(header_data):
     meta['electron_flux2'] = {meta.labels.units: '#/cm^2/sr/s',
                               meta.labels.min_val: 0.0,
                               meta.labels.max_val: np.inf}
-    meta['species2'] = {meta.labels.units: '???',
+    meta['species2'] = {meta.labels.units: 'unitless',
+                        meta.labels.notes: '0 (not currently used), 1 – protons, 2-electrons, and 3-both / ambiguous',
                         meta.labels.min_val: 0.0,
                         meta.labels.max_val: np.nan}
     meta['hk_temperature'] = {meta.labels.units: 'degrees C',
                               meta.labels.min_val: 0.0,
                               meta.labels.max_val: 20.0}
-    meta['hk_15v_monitor'] = {meta.labels.units: '???',
+    meta['hk_15v_monitor'] = {meta.labels.units: 'volts',
                               meta.labels.min_val: 0.0,
                               meta.labels.max_val: np.nan}
-    meta['hk_5v_monitor'] = {meta.labels.units: '???',
+    meta['hk_5v_monitor'] = {meta.labels.units: 'volts',
                              meta.labels.min_val: 0.0,
                              meta.labels.max_val: np.nan}
-    meta['hk_3_3v_monitor'] = {meta.labels.units: '???',
+    meta['hk_3_3v_monitor'] = {meta.labels.units: 'volts',
                                meta.labels.min_val: 0.0,
                                meta.labels.max_val: np.nan}
     meta['lm'] = {meta.labels.units: 'RE',
@@ -289,17 +291,18 @@ def generate_metadata(header_data):
                     meta.labels.max_val: np.nan}
     meta['alpha'] = {meta.labels.units: 'deg',
                      meta.labels.min_val: 0.0,
-                     meta.labels.max_val: np.nan}
-    meta['alpha_eq'] = {meta.labels.units: '???',
+                     meta.labels.max_val: 90.0}
+    meta['alpha_eq'] = {meta.labels.units: 'deg',
                         meta.labels.min_val: 0.0,
                         meta.labels.max_val: np.nan}
-    meta['region_code'] = {meta.labels.units: '???',
+    meta['region_code'] = {meta.labels.units: 'unitless',
                            meta.labels.min_val: 0.0,
                            meta.labels.max_val: np.nan}
-    meta['orbit_status'] = {meta.labels.units: '???',
+    meta['orbit_status'] = {meta.labels.units: 'unitless',
+                            meta.lables.notes: '1=Northbound, 2=Southbound',
                             meta.labels.min_val: 0.0,
                             meta.labels.max_val: np.nan}
-    meta['flag'] = {meta.labels.units: '???',
+    meta['flag'] = {meta.labels.units: 'unitless',
                     meta.labels.min_val: 0.0,
                     meta.labels.max_val: np.nan}
 
