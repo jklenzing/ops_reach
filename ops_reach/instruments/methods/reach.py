@@ -177,9 +177,9 @@ def generate_metadata(header_data):
     meta = pysat.Meta(header_data=header_data)
 
     meta['mjd'] = {meta.labels.name: 'Modified Julian Day',
-                   meta.labels.units: 'Julian Day',
+                   meta.labels.units: 'days',
                    meta.labels.min_val: 0.0,
-                   meta.labels.max_val: np.nan}
+                   meta.labels.max_val: np.inf}
     meta['year'] = {meta.labels.units: 'years',
                     meta.labels.min_val: 0,
                     meta.labels.max_val: np.inf}
@@ -216,8 +216,8 @@ def generate_metadata(header_data):
                         meta.labels.max_val: 90.0}
     meta['longitude'] = {meta.labels.name: 'Geodetic Longitude',
                          meta.labels.units: 'degrees',
-                         meta.labels.min_val: 0.0,
-                         meta.labels.max_val: 360.0}
+                         meta.labels.min_val: -180.0,
+                         meta.labels.max_val: 180.0}
     meta['geo_x'] = {meta.labels.units: 'RE',
                      meta.labels.min_val: -2.0,
                      meta.labels.max_val: 2.0}
@@ -249,9 +249,9 @@ def generate_metadata(header_data):
                               meta.labels.min_val: 0.0,
                               meta.labels.max_val: np.inf}
     meta['species1'] = {meta.labels.name: 'Most probable species',
-                        meta.labels.notes: ' '.join(('0 (not currently used),',
-                                                     '1 – protons, 2-electrons,',
-                                                     'and 3-both / ambiguous')),
+                        meta.labels.notes: '; '.join(('0 (not currently used)',
+                                                      '1 – protons, 2-electrons',
+                                                      'and 3-both / ambiguous')),
                         meta.labels.units: 'unitless',
                         meta.labels.min_val: 0,
                         meta.labels.max_val: 3}
@@ -268,9 +268,9 @@ def generate_metadata(header_data):
                               meta.labels.min_val: 0.0,
                               meta.labels.max_val: np.inf}
     meta['species2'] = {meta.labels.name: 'Most probable species',
-                        meta.labels.notes: ' '.join(('0 (not currently used),',
-                                                     '1 – protons, 2-electrons,',
-                                                     'and 3-both / ambiguous')),
+                        meta.labels.notes: '; '.join(('0 (not currently used)',
+                                                      '1 – protons, 2-electrons',
+                                                      'and 3-both / ambiguous')),
                         meta.labels.units: 'unitless',
                         meta.labels.min_val: 0,
                         meta.labels.max_val: 3}
@@ -299,8 +299,9 @@ def generate_metadata(header_data):
                                                    'locally mirroring',
                                                    'particle')),
                        meta.labels.units: 'deg',
-                       meta.labels.min_val: 0.0,
-                       meta.labels.max_val: np.nan}
+                       meta.labels.min_val: -90.0,
+                       meta.labels.max_val: 90.0,
+                       meta.labels.fill_val: -1.0e31}
     meta['blocal'] = {meta.labels.name: 'Local magnetic field at s/c',
                       meta.labels.units: 'nT',
                       meta.labels.min_val: 0.0,
@@ -314,7 +315,7 @@ def generate_metadata(header_data):
     meta['mlt'] = {meta.labels.name: 'Magnetic local time',
                    meta.labels.units: 'hours',
                    meta.labels.min_val: 0.0,
-                   meta.labels.max_val: np.nan}
+                   meta.labels.max_val: 24.0}
     meta['k_sqrt'] = {meta.labels.units: 'RE',
                       meta.labels.min_val: 0.0,
                       meta.labels.max_val: np.nan}
@@ -324,11 +325,12 @@ def generate_metadata(header_data):
     meta['alpha'] = {meta.labels.name: 'Local pitch angle',
                      meta.labels.units: 'deg',
                      meta.labels.min_val: 0.0,
-                     meta.labels.max_val: 90.0}
+                     meta.labels.max_val: 180.0}
     meta['alpha_eq'] = {meta.labels.name: 'Equatorial pitch angle',
                         meta.labels.units: 'deg',
                         meta.labels.min_val: 0.0,
-                        meta.labels.max_val: np.nan}
+                        meta.labels.max_val: 90.0,
+                        meta.labels.fill_val: -1.0e31}
     meta['region_code'] = {
         meta.labels.notes: '; '.join(('-4: Southern Polar Cap',
                                       '-3: Outer Zone Untrapped',
