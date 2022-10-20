@@ -155,7 +155,7 @@ def generate_header(inst_id, epoch):
               'LINK_TITLE': 'REACH data ',
               'HTTP_LINK': 'https://zenodo.org/record/6423507#.YmMwUfPMLCV'}
 
-    # Extract info from pods serial numbers
+    # Extract info from pod serial numbers
     pods = pds.read_csv('pod_serial_numbers.csv')
     info = pods[pods['Hosted payload number (HPL)'] == inst_id]
     for key in info.keys():
