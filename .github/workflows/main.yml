@@ -23,9 +23,18 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Install standard dependencies
+    - name: Install test dependencies
       run: |
         pip install -r test_requirements.txt
+
+    - name: Install standard dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Set up pysat
+      run: |
+        mkdir pysatData
+        python -c "import pysat; pysat.params['data_dirs'] = 'pysatData'"
 
     - name: Test PEP8 compliance
       run: flake8 . --count --select=D,E,F,H,W --show-source --statistics
@@ -35,3 +44,7 @@ jobs:
 
     - name: Load .zenodo.json to check for errors
       run: python -c "import json; json.loads(open('.zenodo.json').read())"
+
+    - name: Test with pytest
+      run: |
+        pytest -vs --cov=ops_reach/
