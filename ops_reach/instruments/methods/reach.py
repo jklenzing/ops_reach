@@ -3,6 +3,7 @@
 
 import datetime as dt
 import numpy as np
+import pandas as pds
 
 import pysat
 
@@ -153,6 +154,12 @@ def generate_header(inst_id, epoch):
               'LINK_TEXT': 'REACH csv files are avalible at ',
               'LINK_TITLE': 'REACH data ',
               'HTTP_LINK': 'https://zenodo.org/record/6423507#.YmMwUfPMLCV'}
+
+    # Extract info from pod serial numbers
+    pods = pds.read_csv('pod_serial_numbers.csv')
+    info = pods[pods['Hosted payload number (HPL)'] == inst_id]
+    for key in info.keys():
+        header[key] = info[key].values[0]
 
     return header
 
