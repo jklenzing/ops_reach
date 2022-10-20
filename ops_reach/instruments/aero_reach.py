@@ -21,6 +21,7 @@ import pandas as pds
 import pysat
 from pysat.instruments.methods import general as mm_gen
 from pysat.instruments.methods import testing as mm_test
+
 from ops_reach.instruments.methods import reach as mm_reach
 
 # ----------------------------------------------------------------------------
