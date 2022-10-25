@@ -2,6 +2,7 @@
 
 import os
 
+import ops_reach
 from ops_reach.instruments import aero_reach
 import pysat
 
@@ -26,6 +27,10 @@ for inst_id in inst_ids:
 
         # Get data
         reach.load(date=date)
+
+        # Update meta info for l1c
+        reach.meta.header.Data_product = 'l1c'
+        reach.meta.header.Software_version = ops_reach.__version__
 
         # Ouput data
         pysat.utils.io.inst_to_netcdf(reach, outfile)
