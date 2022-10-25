@@ -9,8 +9,9 @@ import os
 from ops_reach import instruments  # noqa F401
 
 # set version
-here = os.path.abspath(os.path.dirname(__file__))
-version_filename = os.path.join(here, 'version.txt')
+__here__ = os.path.abspath(os.path.dirname(__file__))
+version_filename = os.path.join(__here__, 'version.txt')
 with open(version_filename, 'r') as version_file:
     __version__ = version_file.read().strip()
-del here, version_filename, version_file
+
+del version_filename, version_file
