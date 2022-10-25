@@ -15,6 +15,6 @@ To run a specific test, include the filename (with the full path if not in the
 test directory), class, and test name:
 ::
 
-  pytest test_methods_cdaweb.py::TestCDAWeb::test_bad_kwarg_download
+  pytest test_instruments.py::TestInstruments::test_modules_standard
 
 """

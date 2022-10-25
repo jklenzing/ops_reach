@@ -38,7 +38,7 @@ inst_ids = {'101': [tag for tag in tags.keys()],
 # Custom Instrument properties
 directory_format = os.path.join('{platform}', '{name}', '{tag}')
 
-_test_dates = {id: {'l1b': dt.datetime(2019, 1, 1)} for id in inst_ids.keys()}
+_test_dates = {id: {'l1b': dt.datetime(2017, 6, 1)} for id in inst_ids.keys()}
 _test_download = {id: {'l1b': False} for id in inst_ids.keys()}
 
 
