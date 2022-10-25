@@ -26,7 +26,10 @@ for inst_id in inst_ids:
         outfile = os.path.join(path, fname)
 
         # Get data
-        reach.load(date=date)
+        reach.load(date=date, use_header=True)
+
+        # Change HK 5V monitor to float
+        reach['hk_5v_monitor'] = reach['hk_5v_monitor'].astype(float)
 
         # Update meta info for l1c
         reach.meta.header.Data_product = 'l1c'

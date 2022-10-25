@@ -194,31 +194,38 @@ def generate_metadata(header_data):
                    meta.labels.min_val: 57754.0,
                    meta.labels.max_val: 80754.0}
     meta['year'] = {meta.labels.units: 'years',
-                    meta.labels.min_val: 2017.0,
-                    meta.labels.max_val: 2079.0}
+                    meta.labels.min_val: 2017,
+                    meta.labels.max_val: 2079,
+                    meta.labels.fill_val: -999}
     meta['month'] = {meta.labels.units: 'months',
-                     meta.labels.min_val: 0.0,
-                     meta.labels.max_val: 12.0}
+                     meta.labels.min_val: 0,
+                     meta.labels.max_val: 12,
+                     meta.labels.fill_val: -999}
     meta['day'] = {meta.labels.units: 'days',
-                   meta.labels.min_val: 0.0,
-                   meta.labels.max_val: 31.0}
+                   meta.labels.min_val: 0,
+                   meta.labels.max_val: 31,
+                   meta.labels.fill_val: -999}
     meta['hour'] = {meta.labels.units: 'hours',
-                    meta.labels.min_val: 0.0,
-                    meta.labels.max_val: 24.0}
+                    meta.labels.min_val: 0,
+                    meta.labels.max_val: 24,
+                    meta.labels.fill_val: -999}
     meta['minute'] = {meta.labels.units: 'minutes',
-                      meta.labels.min_val: 0.0,
-                      meta.labels.max_val: 60.0}
+                      meta.labels.min_val: 0,
+                      meta.labels.max_val: 60,
+                      meta.labels.fill_val: -999}
     meta['seconds'] = {meta.labels.units: 'seconds',
-                       meta.labels.min_val: 0.0,
-                       meta.labels.max_val: 60.0}
-    meta['doy'] = {meta.labels.name: 'Day of Year',
+                       meta.labels.min_val: 0,
+                       meta.labels.max_val: 60,
+                       meta.labels.fill_val: -999}
+    meta['doy'] = {meta.labels.name: 'Fractional Day of Year',
                    meta.labels.units: 'days',
                    meta.labels.min_val: 0.0,
-                   meta.labels.max_val: 366.0}
+                   meta.labels.max_val: 367.0}
     meta['vid'] = {meta.labels.name: 'REACH Vehicle Identifier',
                    meta.labels.units: 'unitless',
-                   meta.labels.min_val: 0.0,
-                   meta.labels.max_val: np.nan}
+                   meta.labels.min_val: 101,
+                   meta.labels.max_val: 181,
+                   meta.labels.fill_val: -999}
     meta['altitude'] = {meta.labels.name: 'Geodetic Altitude',
                         meta.labels.units: 'km',
                         meta.labels.min_val: 750.0,
@@ -267,7 +274,8 @@ def generate_metadata(header_data):
                                                       'and 3-both / ambiguous')),
                         meta.labels.units: 'unitless',
                         meta.labels.min_val: 0,
-                        meta.labels.max_val: 3}
+                        meta.labels.max_val: 3,
+                        meta.labels.fill_val: -999}
     meta['dose2'] = {meta.labels.name: 'Dose rate from Dosimeter 2',
                      meta.labels.units: 'rad/s',
                      meta.labels.min_val: 0.0,
@@ -286,7 +294,8 @@ def generate_metadata(header_data):
                                                       'and 3-both / ambiguous')),
                         meta.labels.units: 'unitless',
                         meta.labels.min_val: 0,
-                        meta.labels.max_val: 3}
+                        meta.labels.max_val: 3,
+                        meta.labels.fill_val: -999}
     meta['hk_temperature'] = {meta.labels.name: 'Housekeeping temperature',
                               meta.labels.units: 'degrees C',
                               meta.labels.min_val: 0.0,
@@ -297,7 +306,7 @@ def generate_metadata(header_data):
                               meta.labels.max_val: np.nan}
     meta['hk_5v_monitor'] = {meta.labels.name: 'Housekeeping voltage 5V',
                              meta.labels.units: 'volts',
-                             meta.labels.min_val: 0.0,
+                             meta.labels.min_val: 0,
                              meta.labels.max_val: np.nan}
     meta['hk_3_3v_monitor'] = {meta.labels.name: 'Housekeeping voltage 3.3V',
                                meta.labels.units: 'volts',
@@ -356,11 +365,13 @@ def generate_metadata(header_data):
                                       '4: Northern Polar Cap')),
         meta.labels.units: 'unitless',
         meta.labels.min_val: -4,
-        meta.labels.max_val: 4}
+        meta.labels.max_val: 4,
+        meta.labels.fill_val: -999}
     meta['orbit_status'] = {meta.labels.units: 'unitless',
                             meta.labels.notes: '1=Northbound; 2=Southbound',
-                            meta.labels.min_val: 0.0,
-                            meta.labels.max_val: np.nan}
+                            meta.labels.min_val: 1,
+                            meta.labels.max_val: 2,
+                            meta.labels.fill_val: -999}
     meta['flag'] = {
         meta.labels.notes: '; '.join((
             '-1: no data',
@@ -372,6 +383,7 @@ def generate_metadata(header_data):
             '16: Unknown issue with VID 163/Dosimeter B')),
         meta.labels.units: 'unitless',
         meta.labels.min_val: -1,
-        meta.labels.max_val: 16}
+        meta.labels.max_val: 16,
+        meta.labels.fill_val: -999}
 
     return meta
