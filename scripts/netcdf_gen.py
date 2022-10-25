@@ -18,7 +18,7 @@ for inst_id in inst_ids:
     # Generate main reach instrument
     reach = pysat.Instrument(inst_module=aero_reach, tag='l1b', inst_id=inst_id)
 
-    for date in reach.files.files.index:
+    for date in reach.files.files.index[0:1]:
         # Generate outfile name
         fname = reach.files.files[date]
         fname = fname.replace('l1b', 'l1c')
@@ -36,4 +36,4 @@ for inst_id in inst_ids:
         reach.meta.header.Software_version = ops_reach.__version__
 
         # Ouput data
-        pysat.utils.io.inst_to_netcdf(reach, outfile)
+        pysat.utils.io.inst_to_netcdf(reach, outfile, epoch_name='time')
