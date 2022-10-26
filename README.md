@@ -12,11 +12,8 @@ Python 3.8+.
 
 | Common modules | Community modules |
 | -------------- | ----------------- |
-| numpy          | pysat>=3.0.2      |
+| numpy          | pysat>=3.0.4      |
 | pandas         |                   |
-
-Note: requires the next `pysat` that is not yet released.  This is currently 
-set up as a release candidate at https://github.com/pysat/pysat/pull/1014
 
 For the initial version, the repository must be installed from github:
 
@@ -24,14 +21,14 @@ For the initial version, the repository must be installed from github:
 git clone https://github.com/jklenzing/ops_reach.git
 ```
 
-Change directories into the repository folder and run the setup.py file.  For
-a local install use the "--user" flag after "develop".  As the project is under
+Change directories into the repository folder and build the project.  For
+a local install use the "--user" flag after "install".  As the project is under
 active development, using the "develop" option rather than install is highly
 recommended.
 
 ```
 cd ops_reach
-python setup.py develop
+pip install -e .
 ```
 
 ## Initial setup
@@ -39,8 +36,8 @@ If you are new to pysat, you will need to initialize the dataset folder.
 ```
 pysat.params['data_dirs'] = 'path/to/directory/that/may/or/may/not/exist'
 ```
-pysat will create directories as needed.  For example, 
-`pysat.params['data_dirs'] = '~/data'` will create a new directory under the 
+pysat will create directories as needed.  For example,
+`pysat.params['data_dirs'] = '~/data'` will create a new directory under the
 user's home directory.
 
 Since download support for REACH is not yet supported, we need to mimic the
