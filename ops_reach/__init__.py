@@ -1,7 +1,7 @@
 """Core library for ops_reach.
 
 This is a library of `pysat` instrument modules and methods designed to support
-REACH instruments for conversion of level 1b data to level 2.
+REACH instruments for conversion of level 1b data to level 1c.
 
 """
 
