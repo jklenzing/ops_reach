@@ -2,6 +2,7 @@
 
 import os
 
+import ops_reach
 from ops_reach.instruments import aero_reach
 import pysat
 
@@ -17,7 +18,7 @@ for inst_id in inst_ids:
     # Generate main reach instrument
     reach = pysat.Instrument(inst_module=aero_reach, tag='l1b', inst_id=inst_id)
 
-    for date in reach.files.files.index:
+    for date in reach.files.files.index[0:1]:
         # Generate outfile name
         fname = reach.files.files[date]
         fname = fname.replace('l1b', 'l1c')
@@ -25,7 +26,14 @@ for inst_id in inst_ids:
         outfile = os.path.join(path, fname)
 
         # Get data
-        reach.load(date=date)
+        reach.load(date=date, use_header=True)
+
+        # Change HK 5V monitor to float
+        reach['hk_5v_monitor'] = reach['hk_5v_monitor'].astype(float)
+
+        # Update meta info for l1c
+        reach.meta.header.Data_product = 'l1c'
+        reach.meta.header.Software_version = ops_reach.__version__
 
         # Ouput data
-        pysat.utils.io.inst_to_netcdf(reach, outfile)
+        pysat.utils.io.inst_to_netcdf(reach, outfile, epoch_name='time')
