@@ -1,4 +1,4 @@
-# ops_reach
+# ops_reach [![DOI](https://zenodo.org/badge/491984211.svg)](https://zenodo.org/badge/latestdoi/491984211)
 
 Scientific Operations Software for the REACH dataset.  
 - Access and organize the Level 1B data
