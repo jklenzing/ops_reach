@@ -18,11 +18,10 @@ for inst_id in inst_ids:
     # Generate main reach instrument
     reach = pysat.Instrument(inst_module=aero_reach, tag='l1b', inst_id=inst_id)
 
-    for date in reach.files.files.index[0:1]:
+    for date in reach.files.files.index[0:2]:
         # Generate outfile name
-        fname = reach.files.files[date]
-        fname = fname.replace('l1b', 'l1c')
-        fname = fname.replace('csv', 'nc')
+        fname = aero_reach.fname['l1c'].format(datestr=aero_reach.datestr,
+                                               inst_id=inst_id)
         outfile = os.path.join(path, fname)
 
         # Get data

@@ -125,15 +125,14 @@ def load(fnames, tag=None, inst_id=None):
 
 # Set the list_files routine
 datestr = '{year:4d}{month:02d}{day:02d}'
-fname = 'reach.{datestr}.vid-{inst_id}.{tag}.v{{version:01d}}.{suffix}'
-suffix = {'l1b': 'csv', 'l1c': 'nc'}
+fname = {'l1b': 'reach.{datestr}.vid-{inst_id}.l1b.v{{version:01d}}.csv',
+         'l1c': 'reach-vid-{inst_id}_dosimeter-l1c_{datestr}_v{{version:01d}}.nc'}
 supported_tags = {}
 for inst_id in inst_ids:
     supported_tags[inst_id] = {}
     for tag in tags:
-        supported_tags[inst_id][tag] = fname.format(datestr=datestr, tag=tag,
-                                                    inst_id=inst_id,
-                                                    suffix=suffix[tag])
+        supported_tags[inst_id][tag] = fname[tag].format(datestr=datestr,
+                                                         inst_id=inst_id)
 list_files = functools.partial(mm_gen.list_files,
                                supported_tags=supported_tags)
 
