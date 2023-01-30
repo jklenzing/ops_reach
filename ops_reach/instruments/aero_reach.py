@@ -110,7 +110,6 @@ def load(fnames, tag=None, inst_id=None):
         header_data = mm_reach.generate_header(inst_id, data.index[0])
         meta = mm_reach.generate_metadata(header_data)
 
-        # TODO(#1): add metadata for variables
     else:
         # Use standard netcdf interface
         data, meta = pysat.utils.io.load_netcdf(fnames)
