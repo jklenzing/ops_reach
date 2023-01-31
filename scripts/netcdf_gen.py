@@ -22,11 +22,16 @@ for inst_id in inst_ids:
         # Generate outfile name
         fname = aero_reach.fname['l1c'].format(datestr=aero_reach.datestr,
                                                inst_id=inst_id)
-        outfile = os.path.join(path, fname)
 
         # Get data
         reach.load(date=date, use_header=True)
 
+        # Set export file name
+        version = int(reach.meta.header.Data_version)
+        outfile = os.path.join(path, fname.format(year=date.year,
+                                                  month=date.month,
+                                                  day=date.day,
+                                                  version=version))
         # Change HK 5V monitor to float
         reach['hk_5v_monitor'] = reach['hk_5v_monitor'].astype(float)
 
