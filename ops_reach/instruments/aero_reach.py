@@ -112,7 +112,7 @@ def load(fnames, tag=None, inst_id=None):
 
     else:
         # Use standard netcdf interface
-        data, meta = pysat.utils.io.load_netcdf(fnames)
+        data, meta = pysat.utils.io.load_netcdf(fnames, epoch_name='time')
 
     return data, meta
 
