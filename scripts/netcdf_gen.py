@@ -39,5 +39,19 @@ for inst_id in inst_ids:
         reach.meta.header.Data_product = 'l1c'
         reach.meta.header.Software_version = ops_reach.__version__
 
+        # Use meta translation table to include SPDF preferred format.
+        # Note that multiple names are output for compliance with pysat.
+        # Using the most generalized form for labels for future compatibility.
+        meta_dict = {reach.meta.labels.min_val: ['value_min', 'VALIDMIN'],
+                     reach.meta.labels.max_val: ['value_max', 'VALIDMAX'],
+                     reach.meta.labels.units: ['UNITS'],
+                     reach.meta.labels.name: ['long_name', 'CATDESC', 'LABLAXIS'],
+                     reach.meta.labels.notes: ['notes', 'VAR_NOTES'],
+                     'Depend_0': ['DEPEND_0'],
+                     'Format': ['FORMAT'],
+                     'Monoton': 'MONOTON',
+                     'Var_Type': ['VAR_TYPE']}
+
         # Ouput data
-        pysat.utils.io.inst_to_netcdf(reach, outfile, epoch_name='time')
+        pysat.utils.io.inst_to_netcdf(reach, outfile, epoch_name='time',
+                                      meta_translation=meta_dict)
