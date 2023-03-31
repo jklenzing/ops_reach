@@ -319,15 +319,15 @@ def generate_metadata(header_data):
     meta['dose1'] = {meta.labels.name: 'Dose rate from Dosimeter 1',
                      meta.labels.units: 'rad/s',
                      meta.labels.min_val: 0.0,
-                     meta.labels.max_val: np.nan}
+                     meta.labels.max_val: 0.1}
     meta['proton_flux1'] = {meta.labels.name: 'Proton flux from bowtie',
                             meta.labels.units: '#/cm^2/sr/s',
                             meta.labels.min_val: 0.0,
-                            meta.labels.max_val: np.nan}
+                            meta.labels.max_val: 30000.0}
     meta['electron_flux1'] = {meta.labels.name: 'Electron flux from bowtie',
                               meta.labels.units: '#/cm^2/sr/s',
                               meta.labels.min_val: 0.0,
-                              meta.labels.max_val: np.nan}
+                              meta.labels.max_val: 50000000.0}
     meta['species1'] = {meta.labels.name: 'Most probable species',
                         meta.labels.notes: '; '.join(('0 (not currently used)',
                                                       '1 – protons, 2-electrons',
@@ -339,15 +339,15 @@ def generate_metadata(header_data):
     meta['dose2'] = {meta.labels.name: 'Dose rate from Dosimeter 2',
                      meta.labels.units: 'rad/s',
                      meta.labels.min_val: 0.0,
-                     meta.labels.max_val: np.nan}
+                     meta.labels.max_val: 0.1}
     meta['proton_flux2'] = {meta.labels.name: 'Proton flux from bowtie',
                             meta.labels.units: '#/cm^2/sr/s',
                             meta.labels.min_val: 0.0,
-                            meta.labels.max_val: np.nan}
+                            meta.labels.max_val: 20000.0}
     meta['electron_flux2'] = {meta.labels.name: 'Electron flux from bowtie',
                               meta.labels.units: '#/cm^2/sr/s',
                               meta.labels.min_val: 0.0,
-                              meta.labels.max_val: np.nan}
+                              meta.labels.max_val: 40000000.0}
     meta['species2'] = {meta.labels.name: 'Most probable species',
                         meta.labels.notes: '; '.join(('0 (not currently used)',
                                                       '1 – protons, 2-electrons',
@@ -363,15 +363,15 @@ def generate_metadata(header_data):
     meta['hk_15v_monitor'] = {meta.labels.name: 'Housekeeping voltage 15V',
                               meta.labels.units: 'volts',
                               meta.labels.min_val: 0.0,
-                              meta.labels.max_val: np.nan}
+                              meta.labels.max_val: 15.0}
     meta['hk_5v_monitor'] = {meta.labels.name: 'Housekeeping voltage 5V',
                              meta.labels.units: 'volts',
                              meta.labels.min_val: 0,
-                             meta.labels.max_val: np.nan}
+                             meta.labels.max_val: 7.0}
     meta['hk_3_3v_monitor'] = {meta.labels.name: 'Housekeeping voltage 3.3V',
                                meta.labels.units: 'volts',
                                meta.labels.min_val: 0.0,
-                               meta.labels.max_val: np.nan}
+                               meta.labels.max_val: 5.0}
     meta['lm'] = {meta.labels.name: ' '.join(('McIlwain L-shell for locally',
                                               'mirroring particle')),
                   meta.labels.units: 'RE',
@@ -387,23 +387,23 @@ def generate_metadata(header_data):
     meta['blocal'] = {meta.labels.name: 'Local magnetic field at s/c',
                       meta.labels.units: 'nT',
                       meta.labels.min_val: 0.0,
-                      meta.labels.max_val: np.nan}
+                      meta.labels.max_val: 50000.0}
     meta['bmin'] = {meta.labels.name: ' '.join(('Minimum magnetic field on',
                                                 'field line intersecting',
                                                 'spacecraft')),
                     meta.labels.units: 'nT',
                     meta.labels.min_val: 0.0,
-                    meta.labels.max_val: np.nan}
+                    meta.labels.max_val: 30000.0}
     meta['mlt'] = {meta.labels.name: 'Magnetic local time',
                    meta.labels.units: 'hours',
                    meta.labels.min_val: 0.0,
                    meta.labels.max_val: 24.0}
     meta['k_sqrt'] = {meta.labels.units: 'RE',
                       meta.labels.min_val: 0.0,
-                      meta.labels.max_val: np.nan}
+                      meta.labels.max_val: 20000.0}
     meta['hmin'] = {meta.labels.units: 'km',
                     meta.labels.min_val: 0.0,
-                    meta.labels.max_val: np.nan}
+                    meta.labels.max_val: 1000.0}
     meta['alpha'] = {meta.labels.name: 'Local pitch angle',
                      meta.labels.units: 'deg',
                      meta.labels.min_val: 0.0,
