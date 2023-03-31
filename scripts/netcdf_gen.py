@@ -6,6 +6,15 @@ import ops_reach
 from ops_reach.instruments import aero_reach
 import pysat
 
+export = False
+
+labels = ['dose1', 'proton_flux1', 'electron_flux1',
+          'dose2', 'proton_flux2', 'electron_flux2',
+          'hk_15v_monitor', 'hk_5v_monitor', 'hk_3_3v_monitor',
+          'blocal', 'bmin', 'k_sqrt', 'hmin']
+
+max_val = {tag: -10 for tag in labels}
+
 # Vehicle ID of REACH instrument
 inst_ids = ['101', '105', '113', '133', '135']
 
@@ -26,32 +35,39 @@ for inst_id in inst_ids:
         # Get data
         reach.load(date=date, use_header=True)
 
-        # Set export file name
-        version = int(reach.meta.header.Data_version)
-        outfile = os.path.join(path, fname.format(year=date.year,
-                                                  month=date.month,
-                                                  day=date.day,
-                                                  version=version))
-        # Change HK 5V monitor to float
-        reach['hk_5v_monitor'] = reach['hk_5v_monitor'].astype(float)
+        for var_name in labels:
+            if max_val[var_name] < reach[var_name].max():
+                max_val[var_name] = reach[var_name].max()
 
-        # Update meta info for l1c
-        reach.meta.header.Data_product = 'l1c'
-        reach.meta.header.Software_version = ops_reach.__version__
+        if export:
 
-        # Use meta translation table to include SPDF preferred format.
-        # Note that multiple names are output for compliance with pysat.
-        # Using the most generalized form for labels for future compatibility.
-        meta_dict = {reach.meta.labels.min_val: ['value_min', 'VALIDMIN'],
-                     reach.meta.labels.max_val: ['value_max', 'VALIDMAX'],
-                     reach.meta.labels.units: ['UNITS'],
-                     reach.meta.labels.name: ['long_name', 'CATDESC', 'LABLAXIS'],
-                     reach.meta.labels.notes: ['notes', 'VAR_NOTES'],
-                     'Depend_0': ['DEPEND_0'],
-                     'Format': ['FORMAT'],
-                     'Monoton': 'MONOTON',
-                     'Var_Type': ['VAR_TYPE']}
+            # Set export file name
+            version = int(reach.meta.header.Data_version)
+            outfile = os.path.join(path, fname.format(year=date.year,
+                                                      month=date.month,
+                                                      day=date.day,
+                                                      version=version))
+            # Change HK 5V monitor to float
+            reach['hk_5v_monitor'] = reach['hk_5v_monitor'].astype(float)
 
-        # Ouput data
-        pysat.utils.io.inst_to_netcdf(reach, outfile, epoch_name='time',
-                                      meta_translation=meta_dict)
+            # Update meta info for l1c
+            reach.meta.header.Data_product = 'l1c'
+            reach.meta.header.Software_version = ops_reach.__version__
+
+            # Use meta translation table to include SPDF preferred format.
+            # Note that multiple names are output for compliance with pysat.
+            # Using the most generalized form for labels for future compatibility.
+            meta_dict = {reach.meta.labels.min_val: ['value_min', 'VALIDMIN'],
+                         reach.meta.labels.max_val: ['value_max', 'VALIDMAX'],
+                         reach.meta.labels.units: ['UNITS'],
+                         reach.meta.labels.name: ['long_name', 'CATDESC',
+                                                  'LABLAXIS'],
+                         reach.meta.labels.notes: ['notes', 'VAR_NOTES'],
+                         'Depend_0': ['DEPEND_0'],
+                         'Format': ['FORMAT'],
+                         'Monoton': 'MONOTON',
+                         'Var_Type': ['VAR_TYPE']}
+
+            # Ouput data
+            pysat.utils.io.inst_to_netcdf(reach, outfile, epoch_name='time',
+                                          meta_translation=meta_dict)
