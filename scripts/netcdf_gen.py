@@ -7,7 +7,7 @@ from ops_reach.instruments import aero_reach
 import pysat
 
 # Vehicle ID of REACH instrument
-inst_ids = ['101', '105']
+inst_ids = ['101', '105', '113', '133', '135']
 
 # Figure out directory for final files
 path = os.path.join(pysat.params['data_dirs'][0], 'aero', 'reach', 'l1c')

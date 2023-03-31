@@ -8,7 +8,7 @@ platform
 name
     'reach'
 inst_id
-    '101', '105'
+    '101', '105', '113', '133', '135'
 tag
     'l1b', 'l1c'
 
@@ -33,7 +33,10 @@ platform = 'aero'
 name = 'reach'
 tags = {'l1b': 'Level 1B dataset', 'l1c': 'Level 1C dataset'}
 inst_ids = {'101': [tag for tag in tags.keys()],
-            '105': [tag for tag in tags.keys()]}
+            '105': [tag for tag in tags.keys()],
+            '113': [tag for tag in tags.keys()],
+            '133': [tag for tag in tags.keys()],
+            '135': [tag for tag in tags.keys()]}
 
 # Custom Instrument properties
 directory_format = os.path.join('{platform}', '{name}', '{tag}')
