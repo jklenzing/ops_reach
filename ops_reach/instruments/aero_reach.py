@@ -181,4 +181,5 @@ def clean(self):
                 fill = self.meta[key, self.meta.labels.fill_val]
                 idx, = np.where(self[key] == fill)
                 self[idx, key] = np.nan
+                self.meta[key] = {self.meta.labels.fill_val: np.nan}
         return
