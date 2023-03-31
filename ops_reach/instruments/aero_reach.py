@@ -16,13 +16,13 @@ tag
 
 import datetime as dt
 import functools
+import numpy as np
 import os
 import pandas as pds
 import warnings
 
 import pysat
 from pysat.instruments.methods import general as mm_gen
-from pysat.instruments.methods import testing as mm_test
 
 from ops_reach.instruments.methods import reach as mm_reach
 
@@ -169,4 +169,13 @@ def download(date_array, tag, inst_id, data_path=None, **kwargs):
     return
 
 
-clean = functools.partial(mm_test.clean)
+def clean(self):
+    """Clean up fill values."""
+
+    if self.clean_level == 'clean':
+        for key in self.data.columns:
+            if key != 'Epoch':
+                fill = self.meta[key, self.meta.labels.fill_val]
+                idx, = np.where(self[key] == fill)
+                self[idx, key] = np.nan
+        return
