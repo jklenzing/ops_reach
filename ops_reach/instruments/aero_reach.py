@@ -17,15 +17,10 @@ tag
 import datetime as dt
 import functools
 import numpy as np
-import os
 import pandas as pds
-import requests
-import tempfile
-import zipfile
 
 import pysat
 from pysat.instruments.methods import general as mm_gen
-from pysat.utils.files import parse_fixed_width_filenames
 
 from ops_reach.instruments.methods import reach as mm_reach
 
@@ -42,7 +37,9 @@ inst_ids = {'101': [tag for tag in tags.keys()],
             '135': [tag for tag in tags.keys()]}
 
 _test_dates = {id: {'l1b': dt.datetime(2017, 6, 1)} for id in inst_ids.keys()}
+# Only setting one inst_id to true since downloads all files.
 _test_download = {id: {'l1b': False} for id in inst_ids.keys()}
+_test_download['101']['l1b'] = True
 
 
 def init(self):
