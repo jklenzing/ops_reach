@@ -5,8 +5,12 @@ import datetime as dt
 import numpy as np
 import os
 import pandas as pds
+import requests
+import tempfile
+import zipfile
 
 import pysat
+from pysat.utils.files import parse_fixed_width_filenames
 
 import ops_reach
 
@@ -447,3 +451,60 @@ def generate_metadata(header_data):
         meta.labels.fill_val: -999}
 
     return meta
+
+
+def download(date_array, tag, inst_id, data_path=None, **kwargs):
+    """Download data (placeholder). Doesn't do anything.
+
+    Parameters
+    ----------
+    date_array : array-like
+        List of datetimes to download data for. The sequence of dates need not
+        be contiguous.
+    tag : str
+        Tag identifier used for particular dataset. This input is provided by
+        pysat.
+    inst_id : str
+        Instrument ID string identifier used for particular dataset. This input
+        is provided by pysat.
+    data_path : str or NoneType
+        Path to directory to download data to. (default=None)
+    **kwargs : dict
+        Additional keywords supplied by user when invoking the download
+        routine attached to a pysat.Instrument object are passed to this
+        routine via kwargs.
+
+    Note
+    ----
+    This routine is invoked by pysat and is not intended for direct use by
+    the end user. Since files are zipped at the source, downloads all inst_ids.
+
+    """
+
+    url = 'https://zenodo.org/record/6423507/files/'
+    zname = 'reach.{year:4d}{month:02d}.v3.zip'
+    search_str = 'reach.{datestr:8s}.vid-{inst_id:3s}.l1b.v{version:01d}.csv'
+
+    temp_dir = tempfile.TemporaryDirectory()
+
+    # Only iterate over monthly values
+    for dl_date in date_array[date_array.day == 1]:
+        zip_fname = zname.format(year=dl_date.year, month=dl_date.month)
+        local_zip_path = os.path.join(temp_dir.name, zip_fname)
+        furl = ''.join((url, zip_fname))
+        with requests.get(furl) as req:
+            if req.status_code != 404:
+                with open(local_zip_path, 'wb') as open_f:
+                    open_f.write(req.content)
+                with zipfile.ZipFile(local_zip_path, 'r') as open_zip:
+                    file_list = open_zip.namelist()
+                    stored = parse_fixed_width_filenames(file_list, search_str)
+                    for ii in range(len(stored['files'])):
+                        open_zip.extract(
+                            stored['files'][ii],
+                            os.path.join(data_path[:-4],
+                                         str(stored['inst_id'][ii])))
+
+    temp_dir.cleanup()
+
+    return

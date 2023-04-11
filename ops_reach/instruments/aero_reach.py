@@ -19,10 +19,13 @@ import functools
 import numpy as np
 import os
 import pandas as pds
-import warnings
+import requests
+import tempfile
+import zipfile
 
 import pysat
 from pysat.instruments.methods import general as mm_gen
+from pysat.utils.files import parse_fixed_width_filenames
 
 from ops_reach.instruments.methods import reach as mm_reach
 
@@ -37,9 +40,6 @@ inst_ids = {'101': [tag for tag in tags.keys()],
             '113': [tag for tag in tags.keys()],
             '133': [tag for tag in tags.keys()],
             '135': [tag for tag in tags.keys()]}
-
-# Custom Instrument properties
-directory_format = os.path.join('{platform}', '{name}', '{tag}')
 
 _test_dates = {id: {'l1b': dt.datetime(2017, 6, 1)} for id in inst_ids.keys()}
 _test_download = {id: {'l1b': False} for id in inst_ids.keys()}
@@ -138,38 +138,7 @@ for inst_id in inst_ids:
 list_files = functools.partial(mm_gen.list_files,
                                supported_tags=supported_tags)
 
-
-# TODO(#3): replace these lines with functional download routines below
-def download(date_array, tag, inst_id, data_path=None, **kwargs):
-    """Download data (placeholder). Doesn't do anything.
-
-    Parameters
-    ----------
-    date_array : array-like
-        List of datetimes to download data for. The sequence of dates need not
-        be contiguous.
-    tag : str
-        Tag identifier used for particular dataset. This input is provided by
-        pysat.
-    inst_id : str
-        Instrument ID string identifier used for particular dataset. This input
-        is provided by pysat.
-    data_path : str or NoneType
-        Path to directory to download data to. (default=None)
-    **kwargs : dict
-        Additional keywords supplied by user when invoking the download
-        routine attached to a pysat.Instrument object are passed to this
-        routine via kwargs.
-
-    Note
-    ----
-    This routine is invoked by pysat and is not intended for direct use by
-    the end user.
-
-    """
-
-    warnings.warn('Not implemented yet. See Issue #3')
-    return
+download = mm_reach.download
 
 
 def clean(self):
