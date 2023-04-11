@@ -30,16 +30,14 @@ from ops_reach.instruments.methods import reach as mm_reach
 platform = 'aero'
 name = 'reach'
 tags = {'l1b': 'Level 1B dataset', 'l1c': 'Level 1C dataset'}
-inst_ids = {'101': [tag for tag in tags.keys()],
-            '105': [tag for tag in tags.keys()],
-            '113': [tag for tag in tags.keys()],
-            '133': [tag for tag in tags.keys()],
-            '135': [tag for tag in tags.keys()]}
+iids = ['101', '102', '105', '108', '113', '114', '115', '116', '133', '134',
+        '135', '136', '137', '138', '139', '140', '148', '149', '162', '163',
+        '164', '165', '169', '170', '171', '172', '173', '176', '180', '181']
+inst_ids = {iid: [tag for tag in tags.keys()] for iid in iids}
 
-_test_dates = {id: {'l1b': dt.datetime(2017, 6, 1)} for id in inst_ids.keys()}
 # Only setting one inst_id to true since downloads all files.
-_test_download = {id: {'l1b': False} for id in inst_ids.keys()}
-_test_download['101']['l1b'] = True
+_test_dates = {'105': {'l1b': dt.datetime(2017, 2, 24)}}
+_test_download = {'105': {'l1b': True}}
 
 
 def init(self):
