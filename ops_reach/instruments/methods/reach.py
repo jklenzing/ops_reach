@@ -488,7 +488,9 @@ def download(date_array, tag, inst_id, data_path=None, **kwargs):
     temp_dir = tempfile.TemporaryDirectory()
 
     # Only iterate over monthly values
-    for dl_date in date_array[date_array.day == 1]:
+    dl_array = pds.DatetimeIndex(np.unique([
+        dt.datetime(date.year, date.month, 1) for date in date_array]))
+    for dl_date in dl_array:
         zip_fname = zname.format(year=dl_date.year, month=dl_date.month)
         local_zip_path = os.path.join(temp_dir.name, zip_fname)
         furl = ''.join((url, zip_fname))
