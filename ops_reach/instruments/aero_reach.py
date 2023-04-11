@@ -32,7 +32,8 @@ name = 'reach'
 tags = {'l1b': 'Level 1B dataset', 'l1c': 'Level 1C dataset'}
 iids = ['101', '102', '105', '108', '113', '114', '115', '116', '133', '134',
         '135', '136', '137', '138', '139', '140', '148', '149', '162', '163',
-        '164', '165', '169', '170', '171', '172', '173', '176', '180', '181']
+        '164', '165', '166', '169', '170', '171', '172', '173', '175', '176',
+        '180', '181']
 inst_ids = {iid: [tag for tag in tags.keys()] for iid in iids}
 
 # Only setting one inst_id to true since downloads all files.
