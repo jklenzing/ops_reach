@@ -14,7 +14,7 @@ labels = ['dose1', 'proton_flux1', 'electron_flux1',
           'blocal', 'bmin', 'k_sqrt', 'hmin']
 
 max_val = {tag: -10 for tag in labels}
-
+min_val = {tag: 1e10 for tag in labels}
 
 # Figure out directory for final files
 path = os.path.join(pysat.params['data_dirs'][0], 'aero', 'reach', 'l1c')
@@ -37,8 +37,11 @@ for inst_id in aero_reach.iids:
         reach.load(date=date, use_header=True)
 
         for var_name in labels:
+            ind = reach[var_name] > -1e30
             if max_val[var_name] < reach[var_name].max():
                 max_val[var_name] = reach[var_name].max()
+            if min_val[var_name] > reach[var_name][ind].min():
+                min_val[var_name] = reach[var_name][ind].min()
 
         if export:
 
