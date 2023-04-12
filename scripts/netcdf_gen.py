@@ -15,19 +15,20 @@ labels = ['dose1', 'proton_flux1', 'electron_flux1',
 
 max_val = {tag: -10 for tag in labels}
 
-# Vehicle ID of REACH instrument
-inst_ids = ['101', '105', '113', '133', '135']
 
 # Figure out directory for final files
 path = os.path.join(pysat.params['data_dirs'][0], 'aero', 'reach', 'l1c')
 if not os.path.isdir(path):
     os.mkdir(path)
 
-for inst_id in inst_ids:
+sum_files = 0
+for inst_id in aero_reach.iids:
     # Generate main reach instrument
-    reach = pysat.Instrument(inst_module=aero_reach, tag='l1b', inst_id=inst_id)
+    reach = pysat.Instrument(inst_module=aero_reach, tag='l1b', inst_id=inst_id,
+                             use_header=True)
 
-    for date in reach.files.files.index[0:2]:
+    sum_files += len(reach.files.files)
+    for date in reach.files.files.index:
         # Generate outfile name
         fname = aero_reach.fname['l1c'].format(datestr=aero_reach.datestr,
                                                inst_id=inst_id)
@@ -43,10 +44,10 @@ for inst_id in inst_ids:
 
             # Set export file name
             version = int(reach.meta.header.Data_version)
-            outfile = os.path.join(path, fname.format(year=date.year,
-                                                      month=date.month,
-                                                      day=date.day,
-                                                      version=version))
+            outfile = os.path.join(path, inst_id, fname.format(year=date.year,
+                                                               month=date.month,
+                                                               day=date.day,
+                                                               version=version))
             # Change HK 5V monitor to float
             reach['hk_5v_monitor'] = reach['hk_5v_monitor'].astype(float)
 
