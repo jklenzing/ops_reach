@@ -453,7 +453,7 @@ def generate_metadata(header_data):
 
 
 def download(date_array, tag, inst_id, data_path=None, **kwargs):
-    """Download data (placeholder). Doesn't do anything.
+    """Download data from zenodo.
 
     Parameters
     ----------
