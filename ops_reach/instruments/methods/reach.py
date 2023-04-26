@@ -145,6 +145,9 @@ def generate_header(inst_id, epoch):
                                        'Commercially Hosted, satellite id ', inst_id)),
               'Logical_source': ''.join(('reach.', epoch.strftime('%Y%m%d'),
                                          '.vid-', inst_id, '.l1b.v3')),
+              'Logical_source_description':
+                  ' '.join(('Dosimeter measurements from the Responsive Environmental',
+                            'Assessment Commerically Hosted satellite', inst_id)),
               'File_naming_convention': 'source_date_vehicalID_descriptor',
               'Data_product': 'l1b',
               'Data_version': '03',
@@ -208,7 +211,7 @@ def generate_header(inst_id, epoch):
 
     # Simplify header info for temperature sensitivity
     t_key = 'Temperature sensitivity (43-65 deg C; 0=no, 1=yes)'
-    t_key_new = 'Temperature Sensitivity'
+    t_key_new = 'Temperature Sensitivity 43-65 deg'
     header = _rename_key(header, t_key, t_key_new)
 
     temp_type = ['no', 'yes']
@@ -217,7 +220,10 @@ def generate_header(inst_id, epoch):
     # Make keys compliant
     new_header = {}
     for key in header.keys():
-        new_key = key.replace(' ', '_')
+        new_key = key.replace(' (HPL)', '')
+        new_key = new_key.replace(' ', '_')
+        new_key = new_key.replace('(', '')
+        new_key = new_key.replace(')', '')
         new_key = new_key.replace('payload', 'Payload')
         new_key = new_key.replace('number', 'Number')
         new_key = new_key.replace('batch', 'Batch')

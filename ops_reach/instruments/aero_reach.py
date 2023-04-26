@@ -8,7 +8,9 @@ platform
 name
     'reach'
 inst_id
-    '101', '105', '113', '133', '135'
+    '101', '102', '105', '108', '113', '114', '115', '116', '133', '134', '135',
+    '136', '137', '138', '139', '140', '148', '149', '162', '163', '164', '165',
+    '166', '169', '170', '171', '172', '173', '175', '176', '180', '181'
 tag
     'l1b', 'l1c'
 
@@ -111,7 +113,7 @@ def load(fnames, tag=None, inst_id=None):
 
     else:
         # Use standard netcdf interface
-        data, meta = pysat.utils.io.load_netcdf(fnames, epoch_name='time')
+        data, meta = pysat.utils.io.load_netcdf(fnames, epoch_name='Epoch')
 
     return data, meta
 

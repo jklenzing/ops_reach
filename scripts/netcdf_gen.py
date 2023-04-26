@@ -6,7 +6,7 @@ import ops_reach
 from ops_reach.instruments import aero_reach
 import pysat
 
-export = False
+export = True
 
 labels = ['dose1', 'proton_flux1', 'electron_flux1',
           'dose2', 'proton_flux2', 'electron_flux2',
@@ -67,9 +67,10 @@ for inst_id in aero_reach.iids:
                          reach.meta.labels.name: ['long_name', 'CATDESC',
                                                   'LABLAXIS'],
                          reach.meta.labels.notes: ['notes', 'VAR_NOTES'],
+                         reach.meta.labels.fill_val: ['_FillValue', 'fill'],
                          'Depend_0': ['DEPEND_0'],
                          'Format': ['FORMAT'],
-                         'Monoton': 'MONOTON',
+                         'Monoton': ['MONOTON'],
                          'Var_Type': ['VAR_TYPE']}
 
             # Ouput data
