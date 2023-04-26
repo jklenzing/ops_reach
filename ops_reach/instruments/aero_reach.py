@@ -113,7 +113,15 @@ def load(fnames, tag=None, inst_id=None):
 
     else:
         # Use standard netcdf interface
-        data, meta = pysat.utils.io.load_netcdf(fnames, epoch_name='Epoch')
+        meta = pysat.Meta()
+        meta_dict = {'VALIDMIN': meta.labels.min_val,
+                     'VALIDMAX': meta.labels.max_val,
+                     'UNITS': meta.labels.units,
+                     'CATDESC': meta.labels.name,
+                     'VAR_NOTES': meta.labels.notes,
+                     '_FillValue': meta.labels.fill_val}
+        data, meta = pysat.utils.io.load_netcdf(fnames, epoch_name='Epoch',
+                                                meta_translation=meta_dict)
 
     return data, meta
 

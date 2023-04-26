@@ -61,18 +61,17 @@ for inst_id in aero_reach.iids:
             # Use meta translation table to include SPDF preferred format.
             # Note that multiple names are output for compliance with pysat.
             # Using the most generalized form for labels for future compatibility.
-            meta_dict = {reach.meta.labels.min_val: ['value_min', 'VALIDMIN'],
-                         reach.meta.labels.max_val: ['value_max', 'VALIDMAX'],
+            meta_dict = {reach.meta.labels.min_val: ['VALIDMIN'],
+                         reach.meta.labels.max_val: ['VALIDMAX'],
                          reach.meta.labels.units: ['UNITS'],
-                         reach.meta.labels.name: ['long_name', 'CATDESC',
-                                                  'LABLAXIS'],
-                         reach.meta.labels.notes: ['notes', 'VAR_NOTES'],
-                         reach.meta.labels.fill_val: ['_FillValue', 'fill'],
+                         reach.meta.labels.name: ['CATDESC', 'LABLAXIS'],
+                         reach.meta.labels.notes: ['VAR_NOTES'],
+                         reach.meta.labels.fill_val: ['_FillValue'],
                          'Depend_0': ['DEPEND_0'],
                          'Format': ['FORMAT'],
                          'Monoton': ['MONOTON'],
                          'Var_Type': ['VAR_TYPE']}
 
             # Ouput data
-            pysat.utils.io.inst_to_netcdf(reach, outfile, epoch_name='time',
                                           meta_translation=meta_dict)
+            pysat.utils.io.inst_to_netcdf(reach, outfile, epoch_name='Epoch',
