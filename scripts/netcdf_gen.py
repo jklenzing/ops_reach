@@ -56,6 +56,7 @@ for inst_id in aero_reach.iids:
 
             # Update meta info for l1c
             reach.meta.header.Data_product = 'l1c'
+            reach.meta.header.Logical_source = 'reach-vid-101_dosimeter-l1c'
             reach.meta.header.Software_version = ops_reach.__version__
 
             # Use meta translation table to include SPDF preferred format.
