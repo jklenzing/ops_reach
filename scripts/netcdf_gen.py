@@ -64,7 +64,7 @@ for inst_id in aero_reach.iids:
             meta_dict = {reach.meta.labels.min_val: ['VALIDMIN'],
                          reach.meta.labels.max_val: ['VALIDMAX'],
                          reach.meta.labels.units: ['UNITS'],
-                         reach.meta.labels.name: ['CATDESC', 'LABLAXIS'],
+                         reach.meta.labels.name: ['CATDESC', 'LABLAXIS', 'FIELDNAM'],
                          reach.meta.labels.notes: ['VAR_NOTES'],
                          reach.meta.labels.fill_val: ['_FillValue'],
                          'Depend_0': ['DEPEND_0'],
