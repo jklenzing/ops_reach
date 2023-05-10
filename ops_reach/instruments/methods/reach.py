@@ -328,15 +328,24 @@ def generate_metadata(header_data):
     meta['dose1'] = {meta.labels.name: 'Dose rate from Dosimeter 1',
                      meta.labels.units: 'rad/s',
                      meta.labels.min_val: 0.0,
-                     meta.labels.max_val: 1.0}
+                     meta.labels.max_val: 1.0,
+                     'SCALEMIN': 1.0e-5,
+                     'SCALEMAX': 1.0,
+                     'SCALETYP': 'log'}
     meta['proton_flux1'] = {meta.labels.name: 'Proton flux from bowtie',
                             meta.labels.units: '#/cm^2/sr/s',
                             meta.labels.min_val: 0.0,
-                            meta.labels.max_val: 1.0e7}
+                            meta.labels.max_val: 1.0e7,
+                            'SCALEMIN': 1.0,
+                            'SCALEMAX': 1.0e7,
+                            'SCALETYP': 'log'}
     meta['electron_flux1'] = {meta.labels.name: 'Electron flux from bowtie',
                               meta.labels.units: '#/cm^2/sr/s',
                               meta.labels.min_val: 0.0,
-                              meta.labels.max_val: 1.0e9}
+                              meta.labels.max_val: 1.0e9,
+                              'SCALEMIN': 1.0,
+                              'SCALEMAX': 1.0e9,
+                              'SCALETYP': 'log'}
     meta['species1'] = {meta.labels.name: 'Most probable species',
                         meta.labels.notes: '; '.join(('0 (not currently used)',
                                                       '1 – protons, 2-electrons',
@@ -348,15 +357,24 @@ def generate_metadata(header_data):
     meta['dose2'] = {meta.labels.name: 'Dose rate from Dosimeter 2',
                      meta.labels.units: 'rad/s',
                      meta.labels.min_val: 0.0,
-                     meta.labels.max_val: 1.0e9}
+                     meta.labels.max_val: 1.0e9,
+                     'SCALEMIN': 1.0,
+                     'SCALEMAX': 1.0e9,
+                     'SCALETYP': 'log'}
     meta['proton_flux2'] = {meta.labels.name: 'Proton flux from bowtie',
                             meta.labels.units: '#/cm^2/sr/s',
                             meta.labels.min_val: 0.0,
-                            meta.labels.max_val: 1.0e10}
+                            meta.labels.max_val: 1.0e10,
+                            'SCALEMIN': 1.0,
+                            'SCALEMAX': 1.0e10,
+                            'SCALETYP': 'log'}
     meta['electron_flux2'] = {meta.labels.name: 'Electron flux from bowtie',
                               meta.labels.units: '#/cm^2/sr/s',
                               meta.labels.min_val: 0.0,
-                              meta.labels.max_val: 1.0e11}
+                              meta.labels.max_val: 1.0e11,
+                              'SCALEMIN': 1.0,
+                              'SCALEMAX': 1.0e11,
+                              'SCALETYP': 'log'}
     meta['species2'] = {meta.labels.name: 'Most probable species',
                         meta.labels.notes: '; '.join(('0 (not currently used)',
                                                       '1 – protons, 2-electrons',
