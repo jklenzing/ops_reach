@@ -74,5 +74,5 @@ for inst_id in aero_reach.iids:
                          'Var_Type': ['VAR_TYPE']}
 
             # Ouput data
-                                          meta_translation=meta_dict)
             pysat.utils.io.inst_to_netcdf(reach, outfile, epoch_name='Epoch',
+                                          meta_translation=meta_dict)
