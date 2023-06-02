@@ -348,7 +348,7 @@ def generate_metadata(header_data):
                               'SCALETYP': 'log'}
     meta['species1'] = {meta.labels.name: 'Most probable species',
                         meta.labels.notes: '; '.join(('0 (not currently used)',
-                                                      '1 – protons, 2-electrons',
+                                                      '1-protons, 2-electrons',
                                                       'and 3-both / ambiguous')),
                         meta.labels.units: 'unitless',
                         meta.labels.min_val: 0,
@@ -377,7 +377,7 @@ def generate_metadata(header_data):
                               'SCALETYP': 'log'}
     meta['species2'] = {meta.labels.name: 'Most probable species',
                         meta.labels.notes: '; '.join(('0 (not currently used)',
-                                                      '1 – protons, 2-electrons',
+                                                      '1-protons, 2-electrons',
                                                       'and 3-both / ambiguous')),
                         meta.labels.units: 'unitless',
                         meta.labels.min_val: 0,
