@@ -474,8 +474,8 @@ def generate_metadata(header_data):
         meta.labels.fill_val: -999}
 
     # Set non-log SCALETYP to linear
-    ind = reach.meta.data['SCALETYP'] == ''
-    reach.meta.data['SCALETYP'][ind] = 'linear'
+    ind = meta.data['SCALETYP'] == ''
+    meta.data['SCALETYP'][ind] = 'linear'
 
     return meta
 
