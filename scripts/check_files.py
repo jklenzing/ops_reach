@@ -6,6 +6,7 @@ from ops_reach.instruments import aero_reach
 import pysat
 
 total_file_diff = 0
+total_files = 0
 
 for inst_id in aero_reach.iids:
     # Generate main reach instrument
@@ -23,5 +24,7 @@ for inst_id in aero_reach.iids:
 
     print(inst_id, check, file_diff)
     total_file_diff += file_diff
+    total_files += len(l1b.files.files)
 
 print('\n{:} files left'.format(total_file_diff))
+print('\n{:} total files'.format(total_files))
