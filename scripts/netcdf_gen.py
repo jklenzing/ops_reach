@@ -76,4 +76,5 @@ for inst_id in aero_reach.iids:
             # Ouput data
             pysat.utils.io.inst_to_netcdf(reach, outfile, epoch_name='Epoch',
                                           meta_translation=meta_dict,
-                                          export_pysat_info=False)
+                                          export_pysat_info=False,
+                                          zlib=True, complevel=6)
