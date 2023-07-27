@@ -4,17 +4,18 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ops_reach"
-version = "0.0.1"
+version = "0.1.0"
 description = 'Scientific Operations support for REACH datasets'
 readme = "README.md"
 requires-python = ">=3.8"
 license = {file = "LICENSE"}
 authors = [
     {name = "Jeff Klenzing", email = "jeffrey.klenzing@nasa.gov"},
-    {name = "Alexa Halford", email = "alexa.j.halford@nasa.gov"}
+    {name = "Alexa Halford", email = "alexa.j.halford@nasa.gov"},
+    {name = "Jonathon M. Smith", email = "jonathon.m.smith@nasa.gov"}
 ]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 4 - Beta",
   "Topic :: Scientific/Engineering :: Astronomy",
   "Topic :: Scientific/Engineering :: Physics",
   "Topic :: Scientific/Engineering :: Atmospheric Science",
