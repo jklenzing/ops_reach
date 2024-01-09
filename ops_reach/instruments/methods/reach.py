@@ -224,7 +224,7 @@ def generate_header(inst_id, epoch):
         new_key = new_key.replace(' ', '_')
         new_key = new_key.replace('(', '')
         new_key = new_key.replace(')', '')
-        new_key = new_key.replace('-', 'to')
+        new_key = new_key.replace('-', '_to_')
         new_key = new_key.replace('payload', 'Payload')
         new_key = new_key.replace('number', 'Number')
         new_key = new_key.replace('batch', 'Batch')
