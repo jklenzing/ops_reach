@@ -154,7 +154,7 @@ def clean(self):
         for key in self.data.columns:
             if key != 'Epoch':
                 fill = self.meta[key, self.meta.labels.fill_val]
-                if type(fill) == float:
+                if isinstance(fill, float):
                     idx, = np.where(self[key] == fill)
                     self[idx, key] = np.nan
                     self.meta[key] = {self.meta.labels.fill_val: np.nan}
