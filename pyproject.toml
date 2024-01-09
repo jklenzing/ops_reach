@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = {file = "LICENSE"}
 authors = [
-    {name = "Jeff Klenzing", email = "jeffrey.klenzing@nasa.gov"},
+    {name = "Jeff Klenzing", email = "jeff.klenzing@nasa.gov"},
     {name = "Alexa Halford", email = "alexa.j.halford@nasa.gov"}
 ]
 classifiers = [
