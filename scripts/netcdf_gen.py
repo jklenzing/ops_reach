@@ -24,8 +24,7 @@ if not os.path.isdir(path):
 sum_files = 0
 for inst_id in aero_reach.iids:
     # Generate main reach instrument
-    reach = pysat.Instrument(inst_module=aero_reach, tag='l1b', inst_id=inst_id,
-                             use_header=True)
+    reach = pysat.Instrument(inst_module=aero_reach, tag='l1b', inst_id=inst_id)
 
     sum_files += len(reach.files.files)
     for date in reach.files.files.index:
@@ -34,7 +33,7 @@ for inst_id in aero_reach.iids:
                                                inst_id=inst_id)
 
         # Get data
-        reach.load(date=date, use_header=True)
+        reach.load(date=date)
 
         for var_name in labels:
             ind = reach[var_name] > -1e30

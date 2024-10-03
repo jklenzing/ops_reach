@@ -224,6 +224,7 @@ def generate_header(inst_id, epoch):
         new_key = new_key.replace(' ', '_')
         new_key = new_key.replace('(', '')
         new_key = new_key.replace(')', '')
+        new_key = new_key.replace('-', '_to_')
         new_key = new_key.replace('payload', 'Payload')
         new_key = new_key.replace('number', 'Number')
         new_key = new_key.replace('batch', 'Batch')
@@ -235,6 +236,10 @@ def generate_header(inst_id, epoch):
         new_key = new_key.replace('nominal', 'Nominal')
         new_key = new_key.replace('threshold', 'Threshold')
         new_header[new_key] = header[key]
+
+    # Check for NaN values in the Notes data.
+    if np.isnan(new_header['Notes']):
+        new_header['Notes'] = ''
 
     return new_header
 
