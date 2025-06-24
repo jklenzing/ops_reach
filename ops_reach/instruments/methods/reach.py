@@ -480,7 +480,7 @@ def generate_metadata(header_data):
 
     # Set non-log SCALETYP to linear
     ind = meta.data['SCALETYP'] == ''
-    meta.data['SCALETYP'][ind] = 'linear'
+    meta.data.loc[ind, 'SCALETYP'] = 'linear'
 
     return meta
 
