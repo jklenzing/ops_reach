@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 * Update metadata standards
 * Update variable names to indicate which dosimeter is used
 * Update setup instructions on readme file
+* Removed chained indices for improved pandas 3.0 compatibility
 
 ## [0.1.0] - 2023-07-23
 * Improved metadata standards for SPDF compatibility
