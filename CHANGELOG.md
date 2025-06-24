@@ -2,8 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
-## [0.1.1] - 2024-XX-XX
+## [0.1.1] - 2025-XX-XX
 * Update metadata standards
+* Update variable names to indicate which dosimeter is used
 * Update setup instructions on readme file
 
 ## [0.1.0] - 2023-07-23
