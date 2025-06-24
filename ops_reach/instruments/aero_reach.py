@@ -41,6 +41,8 @@ inst_ids = {iid: [tag for tag in tags.keys()] for iid in iids}
 # Only setting one inst_id to true since downloads all files.
 _test_dates = {'105': {'l1b': dt.datetime(2017, 2, 24)}}
 _test_download = {'105': {'l1b': True}}
+# Disabling multi-day tests since this functionality is not used in this context
+_new_tests = {'105': {'l1b': False}}
 
 
 def init(self):
