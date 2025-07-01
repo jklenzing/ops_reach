@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 * Update setup instructions on readme file
 * Removed chained indices for improved pandas 3.0 compatibility
 * Disabled new multi-day tests inherited from pysat
+* Update usage of pkg_resources to importlib
 
 ## [0.1.0] - 2023-07-23
 
